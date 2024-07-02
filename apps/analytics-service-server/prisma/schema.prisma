@@ -1,0 +1,29 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model CommentAnalytics {
+  commentId String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  likes     Int?
+  postId    String?
+  replies   Int?
+  updatedAt DateTime @updatedAt
+}
+
+model PostAnalytics {
+  comments  Int?
+  createdAt DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  likes     Int?
+  postId    String?
+  shares    Int?
+  updatedAt DateTime @updatedAt
+  views     Int?
+}
